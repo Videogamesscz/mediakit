@@ -10,11 +10,11 @@
     <style>
         /* --- TEMA PLANTS VS ZOMBIES --- */
         :root {
-            --pvz-green-light: #70c108;
-            --pvz-green-dark: #3a6e0e;
-            --pvz-brown: #6b4c34;
+            --pvz-green-light: #70c108; /* Verde brillante */
+            --pvz-green-dark: #3a6e0e;  /* Verde oscuro textos */
+            --pvz-brown: #6b4c34;       /* Marrón tierra */
             --bg-white: #ffffff;
-            --bg-card: #f9fdf5;
+            --bg-card: #f9fdf5;         /* Blanco menta suave */
             --text-main: #333333;
         }
 
@@ -37,6 +37,7 @@
         .banner-container {
             width: 100%;
             height: 350px; 
+            /* Imagen del banner */
             background-image: url('banner.jpg'); 
             background-size: cover;
             background-position: center;
@@ -45,7 +46,7 @@
 
         .profile-section {
             position: relative;
-            margin-top: 30px; 
+            margin-top: 40px; 
             z-index: 10;
             padding-bottom: 20px;
         }
@@ -53,14 +54,14 @@
         .tagline { 
             color: var(--pvz-green-dark); 
             font-family: 'Bangers', cursive;
-            font-size: 2rem; 
+            font-size: 2.2rem; 
             letter-spacing: 1px;
             display: block;
             margin-bottom: 20px;
-            text-shadow: 1px 1px 0px rgba(112, 193, 8, 0.2);
+            text-shadow: 2px 2px 0px rgba(112, 193, 8, 0.2);
         }
 
-        /* --- ESTRUCTURA --- */
+        /* --- ESTRUCTURA GENERAL --- */
         .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
         
         h2 { 
@@ -69,42 +70,44 @@
             border-bottom: 4px solid var(--pvz-green-light);
             display: inline-block;
             padding-bottom: 5px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             font-size: 2.5rem;
             letter-spacing: 1px;
         }
 
-        /* --- ESTADÍSTICAS (Ahora con enlaces) --- */
+        /* --- ESTADÍSTICAS (MODIFICADO PARA 1 LÍNEA) --- */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
+            /* ✅ CAMBIO CLAVE: Obliga a 5 columnas iguales en una sola línea */
+            grid-template-columns: repeat(5, 1fr); 
+            gap: 12px; /* Espacio reducido para que quepan bien */
             margin-bottom: 70px;
         }
 
-        /* Modificado para ser un botón clickable */
         .stat-card {
             background-color: var(--bg-card);
-            padding: 30px 20px;
-            border-radius: 20px;
+            /* Padding un poco más pequeño para ahorrar espacio */
+            padding: 25px 10px; 
+            border-radius: 15px;
             text-align: center;
             border: 2px solid #eef6e0;
             box-shadow: 0 5px 0 #dcecc0;
             transition: transform 0.2s;
+            display: block;        
+            text-decoration: none; 
+            cursor: pointer;
             
-            /* PROPIEDADES NUEVAS PARA ENLACES */
-            display: block;        /* Para que funcione el ancho y alto en enlaces */
-            text-decoration: none; /* Quita el subrayado azul feo */
-            cursor: pointer;       /* Manita al pasar el mouse */
+            /* Asegura que no se rompa el texto */
+            min-width: 0; 
         }
 
         .stat-card:hover { transform: translateY(-5px); border-color: var(--pvz-green-light); }
 
-        .stat-icon { font-size: 2.8rem; margin-bottom: 15px; }
+        .stat-icon { font-size: 2.5rem; margin-bottom: 10px; }
         
         .stat-number { 
             font-family: 'Bangers', cursive;
-            font-size: 3.2rem; 
+            font-size: 2.5rem; /* Un pelín más pequeño para que no se salga */
             color: var(--text-main);
             display: block; 
             line-height: 1;
@@ -114,18 +117,63 @@
             color: #777; 
             font-weight: 800;
             text-transform: uppercase; 
-            font-size: 0.9rem; 
+            font-size: 0.8rem; 
             margin-top: 5px;
             display: block;
         }
 
-        /* --- COLORES --- */
+        /* Colores Redes Sociales */
         .yt-color { color: #FF0000; }
         .tk-color { color: #000000; text-shadow: 2px 2px 0 #00f2ea; } 
         .x-color  { color: #000000; }
         .fb-color { color: #1877F2; }
+        .ig-color { color: #E1306C; }
 
-        /* --- RESTO DEL DISEÑO --- */
+        /* --- VIDEOS --- */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 70px;
+            min-height: 200px;
+        }
+
+        .video-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border: 4px solid #fff;
+            background: #000;
+            aspect-ratio: 16/9;
+        }
+
+        /* --- COLABORACIONES (Marcas) --- */
+        .brands-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 70px;
+            padding: 20px;
+        }
+
+        .brand-logo {
+            height: 70px;
+            width: auto;
+            filter: grayscale(100%);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            object-fit: contain;
+        }
+
+        .brand-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        /* --- RESTO --- */
         .about-text {
             background: #fff;
             padding: 40px;
@@ -135,21 +183,6 @@
             margin-bottom: 70px;
             font-size: 1.15rem;
             color: #444;
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-            margin-bottom: 70px;
-        }
-
-        .video-card {
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            border: 4px solid #fff;
-            background: #000;
         }
 
         .contact-section {
@@ -190,11 +223,16 @@
             font-weight: bold;
         }
 
-        @media (max-width: 768px) {
+        /* RESPONSIVE: En móviles volveremos a filas automáticas para que se lea bien */
+        @media (max-width: 900px) {
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            }
             .banner-container { height: 200px; }
             h2 { font-size: 2rem; }
-            .stat-number { font-size: 2.5rem; }
+            .stat-number { font-size: 2rem; }
             .tagline { font-size: 1.5rem; }
+            .brand-logo { height: 50px; gap: 30px; }
         }
     </style>
 </head>
@@ -211,7 +249,6 @@
 
         <section id="stats">
             <div class="stats-grid">
-                
                 <a href="https://youtube.com/@videogamesscz" target="_blank" class="stat-card">
                     <i class="fa-brands fa-youtube stat-icon yt-color"></i>
                     <span class="stat-number">265K</span>
@@ -236,11 +273,16 @@
                     <span class="stat-label">Miembros</span>
                 </a>
 
+                <a href="https://www.instagram.com/videogamesscz/" target="_blank" class="stat-card">
+                    <i class="fa-brands fa-instagram stat-icon ig-color"></i>
+                    <span class="stat-number">1K</span>
+                    <span class="stat-label">Comunidad</span>
+                </a>
             </div>
         </section>
 
         <section id="about">
-            <h2>Sobre el proyecto</h2>
+            <h2>Sobre el Proyecto</h2>
             <div class="about-text">
                 <p>
                     ¡Hola! Soy <strong>VIDEOGAMES SCZ</strong>. Mi canal es el punto de referencia para la comunidad de 
@@ -270,11 +312,90 @@
             </div>
         </section>
 
+        <section id="collabs">
+            <h2 style="text-align: center; display: block; border: none;">He colaborado con</h2>
+            
+            <div class="brands-grid">
+                
+                <a href="#" title="Aliexpress">
+                    <img src="aliexpress.png" alt="Aliexpress" class="brand-logo">
+                </a>
+
+                <a href="#" title="Anbernic">
+                    <img src="anbernic.png" alt="Anbernic" class="brand-logo">
+                </a>
+				
+				<a href="#" title="Arzopa">
+                    <img src="arzopa.png" alt="Arzopa" class="brand-logo">
+                </a>
+
+                <a href="#" title="Bangood">
+                    <img src="bangood.png" alt="Bangood" class="brand-logo">
+                </a>
+
+                <a href="#" title="Beelink">
+                    <img src="beelink.png" alt="Beelink" class="brand-logo">
+                </a>
+                
+				<a href="#" title="Xiaomi Blackshark">
+                    <img src="blackshark.png" alt="Xiaomi Blackshark" class="brand-logo">
+                </a>
+				
+				<a href="#" title="Chuwi">
+                    <img src="chuwi.png" alt="Chuwi" class="brand-logo">
+                </a>
+				
+				<a href="#" title="Cuktech">
+                    <img src="cuktech.png" alt="Cuktech" class="brand-logo">
+                </a>
+				
+				<a href="#" title="Cubot">
+                    <img src="cubot.png" alt="Cubot" class="brand-logo">
+                </a>
+				
+				<a href="#" title="Doogee">
+                    <img src="doogee.png" alt="Doogee" class="brand-logo">
+                </a>
+				
+				<a href="#" title="Gamesir">
+                    <img src="gamesir.png" alt="Gamesir" class="brand-logo">
+                </a>
+				
+				<a href="#" title="Hbada">
+                    <img src="hbada.png" alt="Hbada" class="brand-logo">
+                </a>
+				
+				<a href="#" title="Hotwav">
+                    <img src="hotwav.png" alt="Hotwav" class="brand-logo">
+                </a>
+				
+				<a href="#" title="Minisforum">
+                    <img src="minisforum.png" alt="Minisforum" class="brand-logo">
+                </a>
+				
+				<a href="#" title="Oukitel">
+                    <img src="oukitel.png" alt="Oukitel" class="brand-logo">
+                </a>
+				
+				<a href="#" title="Temu">
+                    <img src="temu.png" alt="Temu" class="brand-logo">
+                </a>
+				
+				<a href="#" title="Ulefone">
+                    <img src="ulefone.png" alt="Ulefone" class="brand-logo">
+                </a>
+				
+				<a href="#" title="Wanbo">
+                    <img src="wanbo.png" alt="Wanbo" class="brand-logo">
+                </a>
+				
+                </div>
+        </section>
+
         <section id="contact">
             <div class="contact-section">
                 <h2 style="border:none; text-align: center; font-size: 3rem;">¿LISTO PARA COLABORAR?</h2>
-                <p style="font-size: 1.2rem; color: #555;">Patrocinios, reviews y promociones</p>
-                
+                <p style="font-size: 1.2rem; color: #555;">Patrocinios, Reviews y Promociones</p>
                 <a href="mailto:videogamesscz1@gmail.com" class="email-btn">
                     <i class="fa-regular fa-envelope"></i> CONTACTAR AHORA
                 </a>
@@ -283,10 +404,28 @@
 
     </div>
 
-    <footer>
-        &copy; 2025 VIDEOGAMES SCZ - Hecho para Gamers.
+    <footer style="background-color: #3a6e0e; color: white; text-align: center; padding: 40px 20px;">
+        
+        <p style="font-size: 1.3rem; margin-bottom: 20px; font-weight: bold; font-family: 'Bangers', cursive; letter-spacing: 1px;">
+            &copy; 2025 VIDEOGAMES SCZ - Hecho para Gamers.
+        </p>
+
+        <div style="width: 50px; height: 2px; background-color: #70c108; margin: 0 auto 20px auto;"></div>
+
+        <div style="font-size: 0.85rem; opacity: 0.8; max-width: 900px; margin: 0 auto; font-family: 'Montserrat', sans-serif; font-weight: normal; line-height: 1.5;">
+            <p>
+                <strong>Aviso Legal:</strong> Este sitio web es un portafolio profesional (Media Kit). 
+                El contenido es propiedad de <strong>VIDEOGAMES SCZ</strong>. 
+                Las marcas comerciales, logotipos e imágenes de terceros (como Aliexpress, Bangood, y marcas colaboradoras) 
+                se muestran únicamente con fines informativos y pertenecen a sus respectivos propietarios.
+            </p>
+            
+            <p style="margin-top: 10px;">
+                📧 Contacto: <a href="mailto:videogamesscz1@gmail.com" style="color: #70c108; text-decoration: none; font-weight: bold;">videogamesscz1@gmail.com</a>
+            </p>
+        </div>
+
     </footer>
 
 </body>
 </html>
-
