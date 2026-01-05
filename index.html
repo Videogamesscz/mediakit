@@ -327,10 +327,10 @@
         /* AJUSTES PROFESIONALES PARA IMPRESIÓN (PDF) */
         /* ========================================= */
         @media print {
-            /* 1. Configuración de la hoja A4 */
+            /* 1. MÁRGENES A CERO EN LA PÁGINA */
             @page {
                 size: A4;
-                margin: 10mm; 
+                margin: 0 !important; /* Esto borra las cabeceras del navegador */
             }
 
             /* 2. Reseteo de colores y anchos */
@@ -342,9 +342,10 @@
             body {
                 background-color: #fff;
                 width: 100% !important;
+                /* Añadimos el margen aquí, DENTRO del cuerpo, para que no toque el borde del papel */
                 margin: 0 !important;
-                padding: 0 !important;
-                zoom: 0.85; /* Ajuste para que quepa todo mejor */
+                padding: 1.5cm !important; 
+                zoom: 0.80; /* Un poco más pequeño para asegurar que entra todo */
             }
 
             .container {
@@ -365,10 +366,10 @@
             }
 
             /* 5. EVITAR CORTES (AQUÍ ESTÁ LA SOLUCIÓN) */
-            /* Esto obliga a que toda una sección pase a la siguiente hoja si no cabe */
             section {
                 break-inside: avoid !important;
                 page-break-inside: avoid !important;
+                margin-bottom: 30px !important;
             }
 
             h2, .stat-card, .comment-box, .brands-grid, header {
@@ -394,9 +395,10 @@
 
             /* 7. Banner ajustado */
             .banner-container {
+                /* Forzamos que la imagen se vea aunque hayamos quitado margen */
+                margin: -1.5cm -1.5cm 30px -1.5cm !important; 
+                width: calc(100% + 3cm) !important;
                 height: 150px !important;
-                background-size: cover !important;
-                background-position: center !important;
                 border-bottom: 4px solid var(--pvz-green-light);
             }
             .tagline { margin-bottom: 5px; font-size: 1.8rem; }
