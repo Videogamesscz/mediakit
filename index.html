@@ -64,7 +64,7 @@
         /* --- BOTÓN DESCARGAR PDF (VERDE LIMA) --- */
         .pdf-btn {
             display: inline-block;
-            background-color: var(--pvz-green-light); /* AHORA ES VERDE LIMA */
+            background-color: var(--pvz-green-light); 
             color: white;
             padding: 12px 30px;
             font-family: 'Montserrat', sans-serif;
@@ -75,13 +75,11 @@
             margin-top: 10px;
             transition: all 0.2s;
             border: 2px solid #fff;
-            /* Sombra en verde oscuro para combinar */
             box-shadow: 0 4px 0 var(--pvz-green-dark); 
         }
 
         .pdf-btn:hover {
             transform: translateY(2px);
-            /* Al pasar el ratón se pone verde oscuro */
             background-color: var(--pvz-green-dark); 
             box-shadow: 0 2px 0 #2a520a;
         }
@@ -325,14 +323,14 @@
             font-weight: bold;
         }
 
-       /* ========================================= */
+        /* ========================================= */
         /* AJUSTES PROFESIONALES PARA IMPRESIÓN (PDF) */
         /* ========================================= */
         @media print {
             /* 1. Configuración de la hoja A4 */
             @page {
                 size: A4;
-                margin: 10mm; /* Márgenes de seguridad para que no corte bordes */
+                margin: 10mm; 
             }
 
             /* 2. Reseteo de colores y anchos */
@@ -346,10 +344,9 @@
                 width: 100% !important;
                 margin: 0 !important;
                 padding: 0 !important;
-                zoom: 0.85; /* TRUCO: Aleja un poco todo para que quepa más info en una hoja */
+                zoom: 0.85; /* Ajuste para que quepa todo mejor */
             }
 
-            /* 3. Ajustar el contenedor principal al ancho del papel */
             .container {
                 max-width: 100% !important;
                 width: 100% !important;
@@ -357,21 +354,23 @@
                 margin: 0 !important;
             }
 
-            /* 4. Ocultar botón PDF y sombras */
-            .pdf-btn { display: none !important; }
-            .stat-card, .video-card, .influence-section, .about-text, .contact-section {
+            /* 3. OCULTAR ELEMENTOS QUE NO QUEREMOS EN PDF */
+            .pdf-btn { display: none !important; } /* Ocultar botón descargar */
+            #portfolio { display: none !important; } /* Ocultar sección de VÍDEOS */
+
+            /* 4. Limpieza visual de cajas */
+            .stat-card, .influence-section, .about-text, .contact-section {
                 box-shadow: none !important;
                 border: 1px solid #ccc !important;
             }
 
-            /* 5. EVITAR CORTES DE TEXTO (Lo más importante) */
-            /* Esto obliga a que si una caja no cabe, pase entera a la siguiente página */
-            h2, .stat-card, .video-card, .comment-box, .about-text, .brands-grid, header {
+            /* 5. EVITAR CORTES DE TEXTO */
+            h2, .stat-card, .comment-box, .about-text, .brands-grid, header {
                 break-inside: avoid !important;
                 page-break-inside: avoid !important;
             }
 
-            /* 6. Arreglar las Estadísticas (para que no se salgan del margen) */
+            /* 6. Arreglar Estadísticas */
             .stats-grid {
                 display: flex !important;
                 flex-wrap: wrap;
@@ -380,29 +379,25 @@
                 margin-bottom: 30px;
             }
             .stat-card {
-                flex: 1; /* Reparte el espacio equitativamente */
-                min-width: 80px; /* Evita que se hagan diminutas */
+                flex: 1; 
+                min-width: 80px; 
                 padding: 10px 5px;
             }
-            .stat-icon { font-size: 1.5rem; margin-bottom: 5px; } /* Iconos más pequeños */
+            .stat-icon { font-size: 1.5rem; margin-bottom: 5px; } 
             .stat-number { font-size: 1.8rem; }
 
             /* 7. Banner ajustado */
             .banner-container {
-                height: 150px !important; /* Más bajito para ahorrar papel */
+                height: 150px !important;
                 background-size: cover !important;
                 background-position: center !important;
                 border-bottom: 4px solid var(--pvz-green-light);
             }
             .tagline { margin-bottom: 5px; font-size: 1.8rem; }
 
-            /* 8. Ajuste de videos y marcas */
-            .portfolio-grid {
-                grid-template-columns: repeat(3, 1fr) !important; /* Forzar 3 columnas */
-                gap: 15px;
-            }
+            /* 8. Ajuste de marcas */
             .brand-logo { 
-                height: 40px !important; /* Logos más peques */
+                height: 40px !important;
                 margin: 10px;
             }
             .brands-grid { gap: 20px; padding: 0; }
