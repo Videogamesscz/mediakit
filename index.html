@@ -75,18 +75,16 @@
             letter-spacing: 1px;
         }
 
-        /* --- ESTADÍSTICAS (MODIFICADO PARA 1 LÍNEA) --- */
+        /* --- ESTADÍSTICAS --- */
         .stats-grid {
             display: grid;
-            /* ✅ CAMBIO CLAVE: Obliga a 5 columnas iguales en una sola línea */
             grid-template-columns: repeat(5, 1fr); 
-            gap: 12px; /* Espacio reducido para que quepan bien */
+            gap: 12px;
             margin-bottom: 70px;
         }
 
         .stat-card {
             background-color: var(--bg-card);
-            /* Padding un poco más pequeño para ahorrar espacio */
             padding: 25px 10px; 
             border-radius: 15px;
             text-align: center;
@@ -96,8 +94,6 @@
             display: block;        
             text-decoration: none; 
             cursor: pointer;
-            
-            /* Asegura que no se rompa el texto */
             min-width: 0; 
         }
 
@@ -173,6 +169,87 @@
             transform: scale(1.1);
         }
 
+        /* --- NUEVO: SECCIÓN INFLUENCIA --- */
+        .influence-section {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 70px;
+            border-top: 6px solid var(--pvz-green-light);
+        }
+
+        .influence-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .comment-box {
+            background: #f9f9f9;
+            border-left: 5px solid #ccc;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 0 10px 10px 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .comment-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .comment-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--pvz-brown);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+
+        .comment-name {
+            font-weight: bold;
+            font-size: 0.95rem;
+            margin-right: 10px;
+        }
+
+        .comment-date {
+            font-size: 0.8rem;
+            color: #777;
+        }
+
+        /* Estilo rotulador rojo */
+        .highlight-marker {
+            border: 2px solid #e13030;
+            border-radius: 50% 20% 40% 10%; /* Forma irregular */
+            padding: 2px 6px;
+            display: inline-block;
+            color: #000;
+            font-weight: 600;
+            background-color: rgba(255, 230, 230, 0.3); /* Fondo rojo muy sutil */
+        }
+
+        .influence-conclusion {
+            background-color: var(--bg-card);
+            border: 2px dashed var(--pvz-green-dark);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 30px;
+            color: var(--pvz-green-dark);
+            font-size: 1.1rem;
+        }
+
         /* --- RESTO --- */
         .about-text {
             background: #fff;
@@ -223,7 +300,7 @@
             font-weight: bold;
         }
 
-        /* RESPONSIVE: En móviles volveremos a filas automáticas para que se lea bien */
+        /* RESPONSIVE */
         @media (max-width: 900px) {
             .stats-grid {
                 grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -233,6 +310,7 @@
             .stat-number { font-size: 2rem; }
             .tagline { font-size: 1.5rem; }
             .brand-logo { height: 50px; gap: 30px; }
+            .highlight-marker { border: none; background: #ffe6e6; border-radius: 4px; padding: 2px; } /* Simplificar en móvil si es necesario */
         }
     </style>
 </head>
@@ -393,7 +471,48 @@
                     <img src="wanbo.png" alt="Wanbo" class="brand-logo">
                 </a>
 				
+            </div>
+        </section>
+
+        <section id="influence">
+            <div class="influence-section">
+                <h2 style="margin-bottom: 10px; width: 100%;">INFLUENCIA REAL EN COMPRAS</h2>
+                <p class="influence-subtitle">Mi audiencia confía en mi criterio técnico. No solo miran, actúan.</p>
+
+                <div class="comment-box">
+                    <div class="comment-header">
+                        <img src="avatar1.png" class="comment-avatar" alt="Avatar frankourpk">
+                        
+                        <span class="comment-name">frankourpk</span>
+                        <span class="comment-date">hace 6 meses</span>
+                    </div>
+                    <span class="highlight-marker">Brutal, lo quiero</span></p>
                 </div>
+
+                <div class="comment-box">
+                    <div class="comment-header">
+                        <img src="avatar2.png" class="comment-avatar" alt="Avatar sergimateu2771">
+                        
+                        <span class="comment-name">sergimateu2771</span>
+                        <span class="comment-date">hace 2 meses</span>
+                    </div>
+                    <p>Qué buena pinta tiene. ¿Sólo vale 63 dólares? <span class="highlight-marker">Pues me pido una para España</span></p>
+                </div>
+
+                <div class="comment-box">
+                    <div class="comment-header">
+                        <img src="avatar3.png" class="comment-avatar" alt="Avatar jhosuanoboru322">
+                        
+                        <span class="comment-name">jhosuanoboru322</span>
+                        <span class="comment-date">hace 2 meses</span>
+                    </div>
+                    <p>Excelente recomendación, <span class="highlight-marker">una buena tablet nunca está de más.</span></p>
+                </div>
+
+                <div class="influence-conclusion">
+                    CONCLUSIÓN: Un vídeo en mi canal se traduce en ventas directas y confianza hacia la marca.
+                </div>
+            </div>
         </section>
 
         <section id="contact">
@@ -434,16 +553,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
