@@ -57,8 +57,37 @@
             font-size: 2.2rem; 
             letter-spacing: 1px;
             display: block;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             text-shadow: 2px 2px 0px rgba(112, 193, 8, 0.2);
+        }
+
+        /* --- BOTÓN DESCARGAR PDF (VERDE LIMA) --- */
+        .pdf-btn {
+            display: inline-block;
+            background-color: var(--pvz-green-light); /* AHORA ES VERDE LIMA */
+            color: white;
+            padding: 12px 30px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            margin-top: 10px;
+            transition: all 0.2s;
+            border: 2px solid #fff;
+            /* Sombra en verde oscuro para combinar */
+            box-shadow: 0 4px 0 var(--pvz-green-dark); 
+        }
+
+        .pdf-btn:hover {
+            transform: translateY(2px);
+            /* Al pasar el ratón se pone verde oscuro */
+            background-color: var(--pvz-green-dark); 
+            box-shadow: 0 2px 0 #2a520a;
+        }
+
+        .pdf-btn i {
+            margin-right: 8px;
         }
 
         /* --- ESTRUCTURA GENERAL --- */
@@ -169,7 +198,7 @@
             transform: scale(1.1);
         }
 
-        /* --- NUEVO: SECCIÓN INFLUENCIA --- */
+        /* --- SECCIÓN INFLUENCIA --- */
         .influence-section {
             background-color: #fff;
             padding: 40px;
@@ -203,17 +232,13 @@
         }
 
         .comment-avatar {
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            background-color: var(--pvz-brown);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            margin-right: 10px;
-            font-size: 0.9rem;
+            object-fit: cover;
+            margin-right: 12px;
+            border: 1px solid #ddd;
+            background-color: #eee;
         }
 
         .comment-name {
@@ -300,7 +325,90 @@
             font-weight: bold;
         }
 
-        /* RESPONSIVE */
+       /* ========================================= */
+        /* AJUSTES PROFESIONALES PARA IMPRESIÓN (PDF) */
+        /* ========================================= */
+        @media print {
+            /* 1. Configuración de la hoja A4 */
+            @page {
+                size: A4;
+                margin: 10mm; /* Márgenes de seguridad para que no corte bordes */
+            }
+
+            /* 2. Reseteo de colores y anchos */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            body {
+                background-color: #fff;
+                width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                zoom: 0.85; /* TRUCO: Aleja un poco todo para que quepa más info en una hoja */
+            }
+
+            /* 3. Ajustar el contenedor principal al ancho del papel */
+            .container {
+                max-width: 100% !important;
+                width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            /* 4. Ocultar botón PDF y sombras */
+            .pdf-btn { display: none !important; }
+            .stat-card, .video-card, .influence-section, .about-text, .contact-section {
+                box-shadow: none !important;
+                border: 1px solid #ccc !important;
+            }
+
+            /* 5. EVITAR CORTES DE TEXTO (Lo más importante) */
+            /* Esto obliga a que si una caja no cabe, pase entera a la siguiente página */
+            h2, .stat-card, .video-card, .comment-box, .about-text, .brands-grid, header {
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+            }
+
+            /* 6. Arreglar las Estadísticas (para que no se salgan del margen) */
+            .stats-grid {
+                display: flex !important;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                gap: 10px;
+                margin-bottom: 30px;
+            }
+            .stat-card {
+                flex: 1; /* Reparte el espacio equitativamente */
+                min-width: 80px; /* Evita que se hagan diminutas */
+                padding: 10px 5px;
+            }
+            .stat-icon { font-size: 1.5rem; margin-bottom: 5px; } /* Iconos más pequeños */
+            .stat-number { font-size: 1.8rem; }
+
+            /* 7. Banner ajustado */
+            .banner-container {
+                height: 150px !important; /* Más bajito para ahorrar papel */
+                background-size: cover !important;
+                background-position: center !important;
+                border-bottom: 4px solid var(--pvz-green-light);
+            }
+            .tagline { margin-bottom: 5px; font-size: 1.8rem; }
+
+            /* 8. Ajuste de videos y marcas */
+            .portfolio-grid {
+                grid-template-columns: repeat(3, 1fr) !important; /* Forzar 3 columnas */
+                gap: 15px;
+            }
+            .brand-logo { 
+                height: 40px !important; /* Logos más peques */
+                margin: 10px;
+            }
+            .brands-grid { gap: 20px; padding: 0; }
+        }
+
+        /* RESPONSIVE (MÓVIL) */
         @media (max-width: 900px) {
             .stats-grid {
                 grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -310,7 +418,7 @@
             .stat-number { font-size: 2rem; }
             .tagline { font-size: 1.5rem; }
             .brand-logo { height: 50px; gap: 30px; }
-            .highlight-marker { border: none; background: #ffe6e6; border-radius: 4px; padding: 2px; } /* Simplificar en móvil si es necesario */
+            .highlight-marker { border: none; background: #ffe6e6; border-radius: 4px; padding: 2px; }
         }
     </style>
 </head>
@@ -320,6 +428,10 @@
         <div class="banner-container"></div>
         <div class="profile-section">
             <span class="tagline">Creador de Contenido / Influencer / Modding Expert</span>
+            
+            <a href="mediakit.pdf" class="pdf-btn" download>
+                <i class="fa-solid fa-file-pdf"></i> Descargar Media Kit (PDF)
+            </a>
         </div>
     </header>
 
@@ -486,7 +598,7 @@
                         <span class="comment-name">frankourpk</span>
                         <span class="comment-date">hace 6 meses</span>
                     </div>
-                    <span class="highlight-marker">Brutal, lo quiero</span></p>
+                    <p><span class="highlight-marker">Brutal, lo quiero</span></p>
                 </div>
 
                 <div class="comment-box">
