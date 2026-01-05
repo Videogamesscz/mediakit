@@ -355,8 +355,8 @@
             }
 
             /* 3. OCULTAR ELEMENTOS QUE NO QUEREMOS EN PDF */
-            .pdf-btn { display: none !important; } /* Ocultar botón descargar */
-            #portfolio { display: none !important; } /* Ocultar sección de VÍDEOS */
+            .pdf-btn { display: none !important; } 
+            #portfolio { display: none !important; } /* Ocultar vídeos */
 
             /* 4. Limpieza visual de cajas */
             .stat-card, .influence-section, .about-text, .contact-section {
@@ -364,8 +364,14 @@
                 border: 1px solid #ccc !important;
             }
 
-            /* 5. EVITAR CORTES DE TEXTO */
-            h2, .stat-card, .comment-box, .about-text, .brands-grid, header {
+            /* 5. EVITAR CORTES (AQUÍ ESTÁ LA SOLUCIÓN) */
+            /* Esto obliga a que toda una sección pase a la siguiente hoja si no cabe */
+            section {
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+            }
+
+            h2, .stat-card, .comment-box, .brands-grid, header {
                 break-inside: avoid !important;
                 page-break-inside: avoid !important;
             }
@@ -401,11 +407,6 @@
                 margin: 10px;
             }
             .brands-grid { gap: 20px; padding: 0; }
-
-			section {
-            break-inside: avoid !important;
-            page-break-inside: avoid !important;
-            }
         }
 
         /* RESPONSIVE (MÓVIL) */
@@ -665,4 +666,3 @@
 
 </body>
 </html>
-
